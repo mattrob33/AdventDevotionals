@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mattrobertson.advent.R
 
 class FeedsListFragment : Fragment() {
@@ -16,17 +19,30 @@ class FeedsListFragment : Fragment() {
 	}
 
 	private val viewModel: FeedsListViewModel by viewModels()
+	private lateinit var adapter: FeedsListAdapter
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-		return inflater.inflate(R.layout.main_fragment, container, false)
+		val view = inflater.inflate(R.layout.main_fragment, container, false)
+
+		val recyclerView: RecyclerView = view.findViewById(R.id.feeds)
+
+		adapter = FeedsListAdapter()
+
+		recyclerView.adapter = adapter
+		recyclerView.layoutManager = LinearLayoutManager(requireContext())
+		recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), RecyclerView.VERTICAL))
+
+		return view
 	}
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
 
-		viewModel.feeds.observe(this) { feeds ->
-			if (feeds.size > 1)
-				Toast.makeText(requireContext(), feeds[1].label, Toast.LENGTH_LONG).show()
+		viewModel.feeds.observe(viewLifecycleOwner) { feeds ->
+			if (feeds.isNotEmpty()) {
+				adapter.feedItems = feeds
+				adapter.notifyDataSetChanged()
+			}
 		}
 
 		viewModel.getFeeds()
