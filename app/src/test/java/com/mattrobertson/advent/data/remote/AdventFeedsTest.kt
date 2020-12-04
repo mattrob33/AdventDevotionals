@@ -16,7 +16,7 @@ class AdventFeedsTest {
 
 	@Test
 	fun `feeds not null`() = runBlocking {
-		val feeds = feedsService.getFeeds().execute().body()!!
-		assertEquals(8, feeds.sections[0].items.size)
+		val feeds = feedsService.getFeeds()
+		assertEquals(8, feeds.size)
 	}
 }

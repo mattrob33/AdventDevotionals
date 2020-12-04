@@ -1,6 +1,10 @@
 package com.mattrobertson.advent.data.remote
 
 import com.mattrobertson.advent.data.json.AdventFeedsList
+import com.mattrobertson.advent.domain.model.feeds.FeedListItem
+import com.mattrobertson.advent.domain.model.feeds.map
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -17,11 +21,16 @@ class AdventFeeds {
     private val service: AdventFeedsService = retrofit.create(AdventFeedsService::class.java)
 
 
-    fun getFeeds() = service.getFeeds()
+    suspend fun getFeeds(): List<FeedListItem> {
+        val sections = service.getFeeds()
+        return sections.sections[0].items.map {  jsonItem ->
+            map(jsonItem)
+        }
+    }
 
     interface AdventFeedsService {
         @GET("/galleries/dev_challenge.json")
-        fun getFeeds(): Call<AdventFeedsList>
+        suspend fun getFeeds(): AdventFeedsList
     }
 
     companion object {

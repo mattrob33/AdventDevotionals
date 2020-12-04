@@ -2,6 +2,7 @@ package com.mattrobertson.advent.data.json
 
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import junit.framework.Assert.assertNotNull
 import org.junit.Test
 
 class AdventFeedsParserTest {
@@ -12,5 +13,7 @@ class AdventFeedsParserTest {
         val moshi: Moshi = Moshi.Builder().build()
         val adapter: JsonAdapter<AdventFeedsList> = moshi.adapter(AdventFeedsList::class.java)
         val feeds = adapter.fromJson(json)
+
+        assertNotNull(feeds)
     }
 }
