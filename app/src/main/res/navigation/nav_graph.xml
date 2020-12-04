@@ -9,14 +9,21 @@
         android:id="@+id/feedsListFragment"
         android:name="com.mattrobertson.advent.presentation.feeds.FeedsListFragment"
         android:label="feed_list_fragment"
-        tools:layout="@layout/feed_list_fragment" >
+        tools:layout="@layout/feed_list_fragment">
         <action
-            android:id="@+id/action_feedsListFragment_to_feedFragment"
+            android:id="@+id/toFeedFragment"
             app:destination="@id/feedFragment" />
     </fragment>
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.mattrobertson.advent.presentation.feed.FeedFragment"
         android:label="feed_fragment"
-        tools:layout="@layout/feed_fragment" />
+        tools:layout="@layout/feed_fragment" >
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+    </fragment>
 </navigation>
