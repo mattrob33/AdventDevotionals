@@ -14,11 +14,13 @@ fun map(jsonItem: AdventFeedsListItem): FeedListItem {
     } else {
         FeedListFeedItem(
             label = jsonItem.label,
-            feedUrl = jsonItem.feed_url,
+            feedId = getFeedIdFromUrl(jsonItem.feed_url),
             imageUrl = jsonItem.image_url
         )
     }
 }
+
+fun getFeedIdFromUrl(url: String) = url.substringAfterLast("/").replace(".json", "")
 
 fun map(jsonItem: AdventFeedJson): AdventFeed {
     return AdventFeed(

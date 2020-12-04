@@ -7,7 +7,7 @@ sealed class FeedListItem(
 class FeedListFeedItem(
     label: String,
     val subtitle: String = "",
-    val feedUrl: String = "",
+    val feedId: String = "",
     val imageUrl: String = ""
 ): FeedListItem(label)
 
