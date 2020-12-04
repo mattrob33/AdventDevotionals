@@ -47,7 +47,7 @@ class FeedsListAdapter: RecyclerView.Adapter<FeedsListAdapter.ViewHolder>() {
                     titleView to item.label
                 )
 
-                val action = FeedsListFragmentDirections.toFeedFragment(item.label, item.imageUrl)
+                val action = FeedsListFragmentDirections.toFeedFragment(item.feedId, item.label, item.imageUrl)
                 navController.navigate(action, extras)
             }
         }

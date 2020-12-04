@@ -20,6 +20,9 @@
         android:label="feed_fragment"
         tools:layout="@layout/feed_fragment" >
         <argument
+            android:name="feedId"
+            app:argType="string" />
+        <argument
             android:name="title"
             app:argType="string" />
         <argument
