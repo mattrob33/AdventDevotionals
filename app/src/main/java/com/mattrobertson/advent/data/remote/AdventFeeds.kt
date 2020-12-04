@@ -1,5 +1,6 @@
 package com.mattrobertson.advent.data.remote
 
+import com.mattrobertson.advent.data.json.AdventFeedsList
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -20,7 +21,7 @@ class AdventFeeds {
 
     interface AdventFeedsService {
         @GET("/galleries/dev_challenge.json")
-        fun getFeeds(): Call<ResponseBody>
+        fun getFeeds(): Call<AdventFeedsList>
     }
 
     companion object {
