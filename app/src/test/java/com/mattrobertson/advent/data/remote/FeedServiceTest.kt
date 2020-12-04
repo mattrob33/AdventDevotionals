@@ -5,13 +5,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class AdventFeedServiceTest {
+class FeedServiceTest {
 
-	lateinit var feedService: AdventFeedService
+	lateinit var feedService: FeedService
 
 	@Before
 	fun setup() {
-		feedService = AdventFeedService()
+		feedService = FeedService()
 	}
 
 	@Test
