@@ -3,22 +3,18 @@ package com.mattrobertson.advent.data.remote
 import com.mattrobertson.advent.data.json.AdventFeedsList
 import com.mattrobertson.advent.domain.model.feeds.FeedListItem
 import com.mattrobertson.advent.domain.model.feeds.map
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-class AdventFeeds {
+class AdventFeedsListService {
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
-    private val service: AdventFeedsService = retrofit.create(AdventFeedsService::class.java)
+    private val service: FeedsService = retrofit.create(FeedsService::class.java)
 
 
     suspend fun getFeeds(): List<FeedListItem> {
@@ -28,7 +24,7 @@ class AdventFeeds {
         }
     }
 
-    interface AdventFeedsService {
+    interface FeedsService {
         @GET("/galleries/dev_challenge.json")
         suspend fun getFeeds(): AdventFeedsList
     }
