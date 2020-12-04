@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/feedsListFragment">
+
+    <fragment
+        android:id="@+id/feedsListFragment"
+        android:name="com.mattrobertson.advent.presentation.feeds.FeedsListFragment"
+        android:label="feed_list_fragment"
+        tools:layout="@layout/feed_list_fragment" >
+        <action
+            android:id="@+id/action_feedsListFragment_to_feedFragment"
+            app:destination="@id/feedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.mattrobertson.advent.presentation.feed.FeedFragment"
+        android:label="feed_fragment"
+        tools:layout="@layout/feed_fragment" />
+</navigation>
