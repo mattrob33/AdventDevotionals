@@ -1,4 +1,4 @@
-package com.mattrobertson.advent.presentation.feeds
+package com.mattrobertson.advent.presentation.feedslist
 
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView

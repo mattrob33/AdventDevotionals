@@ -1,6 +1,7 @@
 package com.mattrobertson.advent.presentation.feed
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,8 @@ class FeedFragment : Fragment() {
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
+
+		feedTextView.movementMethod = LinkMovementMethod()
 
 		viewModel.petitionMarkdown.observe(viewLifecycleOwner) { markdown ->
 			feedTextView.text = Markwon.create(requireContext()).toMarkdown(markdown)

@@ -1,4 +1,4 @@
-package com.mattrobertson.advent.presentation.feeds
+package com.mattrobertson.advent.presentation.feedslist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

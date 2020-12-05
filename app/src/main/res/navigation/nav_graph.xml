@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/feedsListFragment"
-        android:name="com.mattrobertson.advent.presentation.feeds.FeedsListFragment"
+        android:name="com.mattrobertson.advent.presentation.feedslist.FeedsListFragment"
         android:label="feed_list_fragment"
         tools:layout="@layout/feed_list_fragment">
         <action
