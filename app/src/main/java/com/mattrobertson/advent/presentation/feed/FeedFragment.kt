@@ -54,8 +54,7 @@ class FeedFragment : Fragment() {
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
 
-		viewModel.feed.observe(viewLifecycleOwner) {
-			val markdown = it?.getTodaysPetition()?.description ?: ""
+		viewModel.petitionMarkdown.observe(viewLifecycleOwner) { markdown ->
 			feedTextView.text = Markwon.create(requireContext()).toMarkdown(markdown)
 		}
 
