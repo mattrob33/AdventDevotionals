@@ -1,11 +1,15 @@
 package com.mattrobertson.advent.presentation.feeds
 
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +19,9 @@ import coil.transform.CircleCropTransformation
 import com.mattrobertson.advent.R
 import com.mattrobertson.advent.domain.model.feeds.FeedListFeedItem
 import com.mattrobertson.advent.domain.model.feeds.FeedListItem
+import com.mattrobertson.advent.domain.model.feeds.FeedListNonFeedItem
+import com.mattrobertson.advent.utils.getImageResId
+
 
 class FeedsListAdapter: RecyclerView.Adapter<FeedsListAdapter.ViewHolder>() {
 
@@ -27,8 +34,9 @@ class FeedsListAdapter: RecyclerView.Adapter<FeedsListAdapter.ViewHolder>() {
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = feedItems[position]
 
+        val imageView = viewHolder.feedImg
+
         if (item is FeedListFeedItem) {
-            val imageView = viewHolder.feedImg
             val titleView = viewHolder.feedTitle
 
             imageView.transitionName = item.imageUrl
@@ -49,6 +57,20 @@ class FeedsListAdapter: RecyclerView.Adapter<FeedsListAdapter.ViewHolder>() {
 
                 val action = FeedsListFragmentDirections.toFeedFragment(item.feedId, item.label, item.imageUrl)
                 navController.navigate(action, extras)
+            }
+        }
+        else if (item is FeedListNonFeedItem) {
+            try {
+                val imageResId = getImageResId(item.imageResource)
+                imageView.load(imageResId)
+            }
+            catch (e: IllegalArgumentException) {
+                Log.w("advent", e.message ?: "Illegal argument ${item.imageResource}")
+            }
+
+            viewHolder.feedRow.setOnClickListener {
+                val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.webUrl))
+                viewHolder.feedRow.context.startActivity(webIntent)
             }
         }
 
