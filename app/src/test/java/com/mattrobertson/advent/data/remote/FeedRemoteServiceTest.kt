@@ -5,18 +5,18 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class FeedServiceTest {
+class FeedRemoteServiceTest {
 
-	lateinit var feedService: FeedService
+	lateinit var feedRemoteService: FeedRemoteService
 
 	@Before
 	fun setup() {
-		feedService = FeedService()
+		feedRemoteService = FeedRemoteService()
 	}
 
 	@Test
 	fun `feed not null`() = runBlocking {
-		val feed = feedService.getFeed("f5308ae92fbad141a19f71c2616720644faa5")
+		val feed = feedRemoteService.getFeed("f5308ae92fbad141a19f71c2616720644faa5")
 		assertNotNull(feed)
 	}
 }

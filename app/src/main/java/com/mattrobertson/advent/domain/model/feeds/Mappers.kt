@@ -40,3 +40,22 @@ fun map(jsonItem: PetitionJson): Petition {
         markdown = jsonItem.markdown
     )
 }
+
+fun map(jsonItem: AdventFeed): AdventFeedJson {
+    return AdventFeedJson(
+        name = jsonItem.name,
+        description = jsonItem.description,
+        sample_chapter_url = jsonItem.sampleChapterUrl,
+        petitions = jsonItem.petitions.map { map(it) }
+    )
+}
+
+fun map(jsonItem: Petition): PetitionJson {
+    return PetitionJson(
+        uid = jsonItem.uid,
+        date = jsonItem.date,
+        title = jsonItem.title,
+        description = jsonItem.description,
+        markdown = jsonItem.markdown
+    )
+}

@@ -5,18 +5,18 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class FeedsListServiceTest {
+class FeedsListRemoteServiceTest {
 
-	lateinit var feedsService: FeedsListService
+	lateinit var feedsRemoteService: FeedsListRemoteService
 
 	@Before
 	fun setup() {
-		feedsService = FeedsListService()
+		feedsRemoteService = FeedsListRemoteService()
 	}
 
 	@Test
 	fun `feeds not null`() = runBlocking {
-		val feeds = feedsService.getFeeds()
+		val feeds = feedsRemoteService.getFeeds()
 		assertEquals(8, feeds.size)
 	}
 }
