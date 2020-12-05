@@ -20,6 +20,16 @@ fun map(jsonItem: AdventFeedsListItem): FeedListItem {
     }
 }
 
+fun map(feedItem: FeedListItem): AdventFeedsListItem {
+    return AdventFeedsListItem(
+        label = feedItem.label,
+        feed_url = if (feedItem is FeedListFeedItem) feedItem.feedId else "",
+        image_url = if (feedItem is FeedListFeedItem) feedItem.imageUrl else "",
+        web_url = if (feedItem is FeedListNonFeedItem) feedItem.webUrl else "",
+        image_resource = if (feedItem is FeedListNonFeedItem) feedItem.imageResource else ""
+    )
+}
+
 fun getFeedIdFromUrl(url: String) = url.substringAfterLast("/").replace(".json", "")
 
 fun map(jsonItem: AdventFeedJson): AdventFeed {
