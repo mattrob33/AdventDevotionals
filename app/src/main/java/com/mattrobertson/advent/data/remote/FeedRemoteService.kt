@@ -1,8 +1,8 @@
 package com.mattrobertson.advent.data.remote
 
 import com.mattrobertson.advent.data.json.AdventFeedJson
-import com.mattrobertson.advent.domain.model.feeds.AdventFeed
-import com.mattrobertson.advent.domain.model.feeds.map
+import com.mattrobertson.advent.domain.model.feeds.Feed
+import com.mattrobertson.advent.data.json.mapFromJson
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -18,7 +18,7 @@ class FeedRemoteService {
     private val service: AdventFeedRetrofit = retrofit.create(AdventFeedRetrofit::class.java)
 
 
-    suspend fun getFeed(feedId: String): AdventFeed = map(service.getFeed(feedId))
+    suspend fun getFeed(feedId: String): Feed = mapFromJson(service.getFeed(feedId))
 
     interface AdventFeedRetrofit {
         @GET("/{feedId}.json")

@@ -1,17 +1,15 @@
 package com.mattrobertson.advent.domain.model.feeds
 
-import java.text.SimpleDateFormat
-import java.util.*
+import com.mattrobertson.advent.utils.getTodaysDate
 
-data class AdventFeed(
+data class Feed(
 	val name: String,
 	val description: String,
-	val sampleChapterUrl: String?,
 	val petitions: List<Petition>
 ) {
+
 	fun getTodaysPetition(): Petition? {
-		val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-		val today = dateFormat.format(Date())
+		val today = getTodaysDate()
 
 		petitions.forEach { petition ->
 			val petitionDate = petition.date
@@ -20,6 +18,7 @@ data class AdventFeed(
 		}
 		return null
 	}
+
 }
 
 data class Petition(

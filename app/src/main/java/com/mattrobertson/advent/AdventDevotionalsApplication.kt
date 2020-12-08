@@ -6,12 +6,12 @@ import android.content.Context
 class AdventDevotionalsApplication: Application() {
 
 	companion object {
-		lateinit var applicationContext: Context
+		lateinit var context: Context
 			private set
 	}
 
 	override fun onCreate() {
 		super.onCreate()
-		AdventDevotionalsApplication.applicationContext = this
+		context = this
 	}
 }

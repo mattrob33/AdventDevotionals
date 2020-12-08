@@ -1,9 +1,7 @@
 package com.mattrobertson.advent.utils
 
-import com.mattrobertson.advent.domain.model.feeds.getFeedIdFromUrl
+import com.mattrobertson.advent.data.json.getFeedIdFromUrl
 import junit.framework.Assert.assertEquals
-import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.Test
 
 class UtilityFunctionsTest {

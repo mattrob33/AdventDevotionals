@@ -52,6 +52,7 @@ ext {
     moshiVersion = "1.11.0"
     navVersion = "2.3.2"
     retrofitVersion = "2.9.0"
+    roomVersion = "2.2.5"
 }
 
 dependencies {
@@ -80,14 +81,19 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     implementation "com.squareup.moshi:moshi:$moshiVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 
     // Coil
     implementation "io.coil-kt:coil:$coilVersion"
 
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
     // Test
     testImplementation 'junit:junit:4.13.1'
+    testImplementation "androidx.room:room-testing:$roomVersion"
 
     // Android Test
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

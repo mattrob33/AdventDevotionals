@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mattrobertson.advent.domain.model.feeds.Petition
-import com.mattrobertson.advent.repo.FeedRepo
+import com.mattrobertson.advent.data.repo.FeedRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

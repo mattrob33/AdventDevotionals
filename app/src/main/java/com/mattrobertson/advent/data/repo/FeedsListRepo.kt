@@ -1,11 +1,11 @@
-package com.mattrobertson.advent.repo
+package com.mattrobertson.advent.data.repo
 
-import com.mattrobertson.advent.data.FeedsListStore
-import com.mattrobertson.advent.data.local.FeedsListPrefsCache
+import com.mattrobertson.advent.data.FeedsListSource
+import com.mattrobertson.advent.data.local.prefscache.FeedsListPrefsCache
 import com.mattrobertson.advent.data.remote.FeedsListRemoteService
 import com.mattrobertson.advent.domain.model.feeds.FeedListItem
 
-class FeedsListRepo: FeedsListStore {
+class FeedsListRepo: FeedsListSource {
 
     private val feedsRemote = FeedsListRemoteService()
     private val feedsLocal = FeedsListPrefsCache()

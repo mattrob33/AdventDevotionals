@@ -2,7 +2,7 @@ package com.mattrobertson.advent.data.remote
 
 import com.mattrobertson.advent.data.json.AdventFeedsList
 import com.mattrobertson.advent.domain.model.feeds.FeedListItem
-import com.mattrobertson.advent.domain.model.feeds.map
+import com.mattrobertson.advent.data.json.mapToJson
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -20,7 +20,7 @@ class FeedsListRemoteService {
     suspend fun getFeeds(): List<FeedListItem> {
         val sections = service.getFeeds()
         return sections.sections[0].items.map {  jsonItem ->
-            map(jsonItem)
+            mapToJson(jsonItem)
         }
     }
 

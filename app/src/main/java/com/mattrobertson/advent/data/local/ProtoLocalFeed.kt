@@ -1,10 +1,10 @@
 package com.mattrobertson.advent.data.local
 
-import com.mattrobertson.advent.data.FeedStore
-import com.mattrobertson.advent.domain.model.feeds.AdventFeed
+import com.mattrobertson.advent.data.FeedSource
+import com.mattrobertson.advent.domain.model.feeds.Feed
 
-abstract class ProtoLocalFeed: FeedStore {
+abstract class ProtoLocalFeed: FeedSource {
 
-	abstract fun saveFeed(feedId: String, feed: AdventFeed)
+	abstract suspend fun saveFeed(feedId: String, feed: Feed)
 
 }

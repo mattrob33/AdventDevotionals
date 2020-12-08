@@ -1,10 +1,8 @@
-package com.mattrobertson.advent.domain.model.feeds
+package com.mattrobertson.advent.data.json
 
-import com.mattrobertson.advent.data.json.AdventFeedJson
-import com.mattrobertson.advent.data.json.AdventFeedsListItem
-import com.mattrobertson.advent.data.json.PetitionJson
+import com.mattrobertson.advent.domain.model.feeds.*
 
-fun map(jsonItem: AdventFeedsListItem): FeedListItem {
+fun mapToJson(jsonItem: AdventFeedsListItem): FeedListItem {
     return if (jsonItem.feed_url.isEmpty()) {
         FeedListNonFeedItem(
             label = jsonItem.label,
@@ -20,7 +18,7 @@ fun map(jsonItem: AdventFeedsListItem): FeedListItem {
     }
 }
 
-fun map(feedItem: FeedListItem): AdventFeedsListItem {
+fun mapToJson(feedItem: FeedListItem): AdventFeedsListItem {
     return AdventFeedsListItem(
         label = feedItem.label,
         feed_url = if (feedItem is FeedListFeedItem) feedItem.feedId else "",
@@ -32,16 +30,15 @@ fun map(feedItem: FeedListItem): AdventFeedsListItem {
 
 fun getFeedIdFromUrl(url: String) = url.substringAfterLast("/").replace(".json", "")
 
-fun map(jsonItem: AdventFeedJson): AdventFeed {
-    return AdventFeed(
+fun mapFromJson(jsonItem: AdventFeedJson): Feed {
+    return Feed(
         name = jsonItem.name,
         description = jsonItem.description,
-        sampleChapterUrl = jsonItem.sample_chapter_url,
-        petitions = jsonItem.petitions.map { map(it) }
+        petitions = jsonItem.petitions.map { mapFromJson(it) }
     )
 }
 
-fun map(jsonItem: PetitionJson): Petition {
+fun mapFromJson(jsonItem: PetitionJson): Petition {
     return Petition(
         uid = jsonItem.uid,
         date = jsonItem.date,
@@ -51,16 +48,15 @@ fun map(jsonItem: PetitionJson): Petition {
     )
 }
 
-fun map(jsonItem: AdventFeed): AdventFeedJson {
+fun mapToJson(jsonItem: Feed): AdventFeedJson {
     return AdventFeedJson(
         name = jsonItem.name,
         description = jsonItem.description,
-        sample_chapter_url = jsonItem.sampleChapterUrl,
-        petitions = jsonItem.petitions.map { map(it) }
+        petitions = jsonItem.petitions.map { mapToJson(it) }
     )
 }
 
-fun map(jsonItem: Petition): PetitionJson {
+fun mapToJson(jsonItem: Petition): PetitionJson {
     return PetitionJson(
         uid = jsonItem.uid,
         date = jsonItem.date,

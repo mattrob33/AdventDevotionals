@@ -2,6 +2,6 @@ package com.mattrobertson.advent.data
 
 import com.mattrobertson.advent.domain.model.feeds.FeedListItem
 
-interface FeedsListStore {
+interface FeedsListSource {
 	suspend fun getFeeds(): List<FeedListItem>?
 }
