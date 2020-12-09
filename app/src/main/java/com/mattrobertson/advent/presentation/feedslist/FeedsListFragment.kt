@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +19,8 @@ class FeedsListFragment : Fragment() {
 	private val viewModel: FeedsListViewModel by viewModels()
 	private lateinit var adapter: FeedsListAdapter
 
+	lateinit var progressBar: ProgressBar
+
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 		val view = inflater.inflate(R.layout.feed_list_fragment, container, false)
 
@@ -25,6 +28,7 @@ class FeedsListFragment : Fragment() {
 		todaysDateView.text = getTodaysDateHumanReadable()
 
 		val recyclerView: RecyclerView = view.findViewById(R.id.feeds)
+		progressBar = view.findViewById(R.id.feedListLoadingProgress)
 
 		adapter = FeedsListAdapter(todaysDateView)
 
@@ -49,6 +53,7 @@ class FeedsListFragment : Fragment() {
 
 		viewModel.feeds.observe(viewLifecycleOwner) { feeds ->
 			if (feeds.isNotEmpty()) {
+				progressBar.visibility = View.GONE
 				adapter.feedItems = feeds
 				adapter.notifyDataSetChanged()
 			}
