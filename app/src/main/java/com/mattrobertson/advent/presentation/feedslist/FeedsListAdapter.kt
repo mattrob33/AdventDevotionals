@@ -22,7 +22,9 @@ import com.mattrobertson.advent.domain.model.feeds.FeedListNonFeedItem
 import com.mattrobertson.advent.utils.getImageResId
 
 
-class FeedsListAdapter: RecyclerView.Adapter<FeedsListAdapter.ViewHolder>() {
+class FeedsListAdapter(
+    private val dateView: TextView
+): RecyclerView.Adapter<FeedsListAdapter.ViewHolder>() {
 
     var feedItems: List<FeedListItem> = listOf()
 
@@ -50,6 +52,7 @@ class FeedsListAdapter: RecyclerView.Adapter<FeedsListAdapter.ViewHolder>() {
                 val navController = viewHolder.feedRow.findNavController()
 
                 val extras = FragmentNavigatorExtras(
+                    dateView to "dateView",
                     imageView to item.imageUrl,
                     titleView to item.label
                 )

@@ -15,15 +15,32 @@
         >
 
         <TextView
+            android:id="@+id/todaysDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:transitionName="todaysDateAnimation"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="December 24th 2020"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
             android:id="@+id/feedTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textAlignment="center"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/todaysDate"
             tools:text="Advent Devotional Title" />
 
         <ImageView
@@ -34,6 +51,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/feedTitle"
+            tools:src="@android:drawable/ic_menu_directions"
+            />
+
+        <ProgressBar
+            android:id="@+id/feedLoadingProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/feedImg"
+            android:visibility="invisible"
             />
 
         <TextView
@@ -46,7 +75,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/feedImg"
-            tools:text="Advent devotional text..." />
+            android:alpha="0"
+            android:visibility="gone"
+            tools:alpha="1"
+            tools:visibility="visible"
+            tools:text="Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... Advent devotional text... "
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
